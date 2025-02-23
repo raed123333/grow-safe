@@ -43,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity {
                 startTracking();
             } else {
                 // If permission is not granted, prompt user to enable it
-                Toast.makeText(MainActivity2.this, "من فضلك قم بتفعيل إذن الوصول إلى الاستخدام من الإعدادات", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity2.this, "Veuillez activer l'autorisation d'accès à l'utilisation à partir des paramètres", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
                 startActivity(intent);
             }
@@ -75,12 +75,12 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }).start();
 
-        Toast.makeText(MainActivity2.this, "بدأت تتبع استخدام التطبيقات", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity2.this, "commencé à suivre l'utilisation des applications", Toast.LENGTH_SHORT).show();
     }
 
     private void stopTracking() {
         trackingActive = false;
-        Toast.makeText(MainActivity2.this, "توقف تتبع الاستخدام", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity2.this, "Arrêter de suivre ", Toast.LENGTH_SHORT).show();
     }
 
     private void showUsageStats() {
@@ -105,7 +105,7 @@ public class MainActivity2 extends AppCompatActivity {
             usageList.addAll(currentUsageList);
             runOnUiThread(() -> adapter.notifyDataSetChanged());
         } else {
-            runOnUiThread(() -> Toast.makeText(MainActivity2.this, "لا توجد بيانات للاستخدام حاليا", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> Toast.makeText(MainActivity2.this, " aucune donnée à utiliser pour le moment", Toast.LENGTH_SHORT).show());
         }
     }
 

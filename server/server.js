@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // Sync Database & Start Server
 sequelize
-  .sync({ force: false }) // Use force: true ONLY in development (drops & recreates tables)
+  .sync({ force: false }) 
   .then(() => console.log(" Database & tables synced"))
   .catch((err) => console.error(" Sync error:", err));
 
