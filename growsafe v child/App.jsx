@@ -29,6 +29,7 @@ function App() {
 
   return (
     <SafeAreaView
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         flex: 1,
         alignItems: 'center',
@@ -37,6 +38,7 @@ function App() {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
       }}>
       <TouchableOpacity
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           width: 300,
           height: 60,
@@ -47,11 +49,12 @@ function App() {
         }}
         onPress={nativeAndroidActivity}>
         <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
-          Native code page 1 activity2
+          gestion de temps
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           width: 300,
           height: 60,
@@ -62,7 +65,7 @@ function App() {
         }}
         onPress={nativeAndroidActivity2}>
         <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
-          Native code page 2 activity3
+          block app
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

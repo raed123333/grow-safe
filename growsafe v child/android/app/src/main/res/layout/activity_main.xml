@@ -9,14 +9,14 @@
         android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ابدأ تتبع الاستخدام"
+        android:text="commencé à suivre l'utilisation des applications"
         android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/stopButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="إيقاف تتبع الاستخدام" />
+        android:text="Arrêter de suivre" />
 
     <ListView
         android:id="@+id/usageListView"
