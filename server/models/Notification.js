@@ -1,7 +1,7 @@
 const {DataTypes}=require("sequelize");
 const sequelize = require("../config/db");
 
-const Notification= await sequelize.define("Notification",{
+const Notification=  sequelize.define("Notification",{
         idnot:{
                 type:DataTypes.INTEGER,
                 autoIncrement:true,

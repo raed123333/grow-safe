@@ -5,6 +5,7 @@ const sequelize = require("./config/db");
 const parentRoutes = require("./routes/parentRoutes");
 const enfantRoutes=require("./routes/enfantRoutes");
 const messengerRoutes=require("./routes/messengerRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/parents", parentRoutes);
 app.use("/enfants",enfantRoutes);
 app.use("/messengers",messengerRoutes);
+app.use("/notifications",notificationRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
