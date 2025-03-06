@@ -21,8 +21,8 @@ exports.getDonneeById=async(req , res)=>{
 };
 exports.createDonnee=async(req , res)=>{
         try{
-                const {cap,image,gestion,local,appblock}=req.body;
-                const newDonnee=await Donnees.create({cap,image,gestion,local,appblock});
+                const {cap,image,gestion,local,appblock,idenf}=req.body;
+                const newDonnee=await Donnees.create({cap,image,gestion,local,appblock,idenf});
                 res.status(201).json(newDonnee);
 
         }catch(err){
@@ -34,7 +34,8 @@ exports.updateDonnee=async(req,res)=>{
         try{
                 const donnee=await Donnees.findByPk(req.params.iddon);
                 if(!donnee) return res.status(404).json({error:"Donnée non trouvée"});
-                donnee.update(req.body);
+                const {cap,image,gestion,local,appblock,idenf}=req.body;
+                await donnee.update({cap,image,gestion,local,appblock,idenf});
                 res.json(donnee);
 
         }catch(err){

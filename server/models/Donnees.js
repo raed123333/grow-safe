@@ -17,7 +17,7 @@ const Donnes =  sequelize.define("Donnes", {
         allowNull: false,
     },
     gestion: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: false,
     },
     local: {
