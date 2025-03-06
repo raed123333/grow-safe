@@ -35,7 +35,7 @@ exports.createEnfant=async(req,res)=>{
 //update an Enfant
 exports.updateEnfant=async(req,res)=>{
         try{
-                const enfant=await Enfant.findByPk(req.paramas.idenf);
+                const enfant=await Enfant.findByPk(req.params.idenf);
                 if(!enfant) return res.status(404).json({error:"Aucun enfant "});
                 const{nom,prenom,motpasse}=req.body;
                 await Enfant.update({nom,prenom,motpasse});
