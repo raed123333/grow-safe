@@ -31,16 +31,17 @@ exports.createNotification = async (req,res )=>{
                 res.status(200).json( newNotification);
 
         }catch(err){
+                console.log(err);
                 console.error(err);
                 res.status(500).json({message: err.message});
         }
 };
-exports.updateNotification=async(req,res)=>{
+exports.updateNotification=async (req,res)=>{
         try{
                 const notification=await Notification.findByPk(req.params.idnot);
                 if(!notification) return res.status(404).json({error:'aucun notification'});
                 const {titre,contenu}=req.body;
-                await Notification.update({titre,contenu});
+                await notification.update({titre,contenu});
                 res.json(notification);
 
         }catch(err){
@@ -54,7 +55,7 @@ exports.deleteNotification=async(req,res)=>{
                 const notification=await Notification.findByPk(req.params.idnot);
                 if(!notification) return res.status(404).json({error:'aucun notification'});
                 await notification.destroy();
-                res.status(204).json({message:"notification supprime"}); 
+                res.json({message:"notificatino supprimé"});
 
         }catch(err){
                 console.error(err);

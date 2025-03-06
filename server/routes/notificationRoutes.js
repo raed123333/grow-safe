@@ -3,7 +3,7 @@ const{getNotificationById,getNotifications,createNotification,updateNotification
 const router=express.Router();
 router.get('/',getNotifications);
 router.get('/:idnot',getNotificationById);
-router.post('/:idnot',createNotification);
+router.post('/',createNotification);
 router.put('/:idnot',updateNotification);
 router.delete('/:idnot',deleteNotification);
 module.exports=router;
