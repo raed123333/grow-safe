@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
