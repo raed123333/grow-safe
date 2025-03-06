@@ -1,6 +1,6 @@
 const express =require('express');
 const {getDonneeById,getDonnees,updateDonnee,deleteDonnee,createDonnee}=require("../controllers/DonneeController")
-const router = express.router();
+const router = express.Router();
 router.get('/',getDonnees);
 router.get('/:iddon',getDonneeById);
 router.post('/',createDonnee);

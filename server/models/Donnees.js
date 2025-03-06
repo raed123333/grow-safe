@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db"); // Assurez-vous d'importer votre instance Sequelize
 const Enfant = require("./Enfant"); // Importer le modèle Enfant
 
-const Donnes = await sequelize.define("Donnes", {
+const Donnes =  sequelize.define("Donnes", {
     iddon: {
         type: DataTypes.INTEGER,
         primaryKey: true,

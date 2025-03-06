@@ -6,7 +6,7 @@ const parentRoutes = require("./routes/parentRoutes");
 const enfantRoutes=require("./routes/enfantRoutes");
 const messengerRoutes=require("./routes/messengerRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
-
+const donneeRoutes =require("./routes/donneeRoutes");
 dotenv.config();
 
 const app = express();
@@ -17,6 +17,7 @@ app.use("/parents", parentRoutes);
 app.use("/enfants",enfantRoutes);
 app.use("/messengers",messengerRoutes);
 app.use("/notifications",notificationRoutes);
+app.use("/donnees",donneeRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
