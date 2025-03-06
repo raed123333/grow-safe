@@ -2,7 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const sequelize = require("./config/db"); 
-const userRoutes = require("./routes/userRoutes");
+const parentRoutes = require("./routes/parentRoutes");
+const enfantRoutes=require("./routes/enfantRoutes");
+const messengerRoutes=require("./routes/messengerRoutes");
 
 dotenv.config();
 
@@ -10,6 +12,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/parents", parentRoutes);
+app.use("/enfants",enfantRoutes);
+app.use("/messengers",messengerRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
