@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import CreateAccount from "./CreateAccount";
+import { View, Text, TouchableOpacity, StyleSheet,Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "./types"; // Import the types
+import { StackNavigationProp } from "@react-navigation/stack";
+import { Link } from 'expo-router';
 
-
-
-const Index = ({ navigation }) => {
+const Index = () => {
   const [primaryButtonScale, setPrimaryButtonScale] = useState(1);
   const [secondaryButtonScale, setSecondaryButtonScale] = useState(1);
+
+  // Type the navigation hook
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const handlePrimaryPressIn = () => {
     setPrimaryButtonScale(1.1); // Zoom in the button
@@ -26,27 +30,30 @@ const Index = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>Welcome to GrowSafe</Text>
       <Text style={styles.subtitle}>Your child's safety is our priority.</Text>
-      <Text style={styles.bullet}>• Track location in real-time</Text>
-      <Text style={styles.bullet}>• Set safe zones & get alerts</Text>
-      <Text style={styles.bullet}>• Monitor app usage & screen time</Text>
-      <Text style={styles.footer}>Let's create a secure digital space together.</Text>
-
+      
+      
+      {/* Primary Button */}
       <TouchableOpacity
         style={[styles.primaryButton, { transform: [{ scale: primaryButtonScale }] }]}
         onPressIn={handlePrimaryPressIn}
         onPressOut={handlePrimaryPressOut}
-        onPress={() => navigation.navigate("CreateAccount")}
+        
       >
+      <Link href="/screens/CreateAccount" asChild>
+      
         <Text style={styles.buttonText}>Créer un compte</Text>
+        </Link>
       </TouchableOpacity>
 
+      {/* Secondary Button */}
       <TouchableOpacity
         style={[styles.secondaryButton, { transform: [{ scale: secondaryButtonScale }] }]}
         onPressIn={handleSecondaryPressIn}
         onPressOut={handleSecondaryPressOut}
-        onPress={() => navigation.navigate("Login")}
+        onPress={() => navigation.navigate("Login")} // Navigate to Login screen (if exists)
       >
         <Text style={styles.buttonText}>Connexion</Text>
       </TouchableOpacity>
@@ -73,18 +80,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#B0B3C1", // Light Gray Subtitle
     marginBottom: 15,
-    textAlign: "center",
-  },
-  bullet: {
-    fontSize: 16,
-    color: "#D0D3E0", // Slightly Brighter Gray
-    textAlign: "center",
-    marginBottom: 5,
-  },
-  footer: {
-    fontSize: 16,
-    color: "#B0B3C1",
-    marginTop: 20,
     textAlign: "center",
   },
   primaryButton: {
