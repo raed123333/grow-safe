@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import CreateAccount from "./CreateAccount";
+
+
 
 const Index = ({ navigation }) => {
   const [primaryButtonScale, setPrimaryButtonScale] = useState(1);
@@ -34,7 +37,7 @@ const Index = ({ navigation }) => {
         style={[styles.primaryButton, { transform: [{ scale: primaryButtonScale }] }]}
         onPressIn={handlePrimaryPressIn}
         onPressOut={handlePrimaryPressOut}
-        onPress={() => navigation.navigate("Signup")}
+        onPress={() => navigation.navigate("CreateAccount")}
       >
         <Text style={styles.buttonText}>Créer un compte</Text>
       </TouchableOpacity>
