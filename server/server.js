@@ -7,9 +7,15 @@ const enfantRoutes=require("./routes/enfantRoutes");
 const messengerRoutes=require("./routes/messengerRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const donneeRoutes =require("./routes/donneeRoutes");
+const bodyParser = require('body-parser');
 dotenv.config();
 
+
+
 const app = express();
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
 app.use(cors());
 app.use(express.json());
 

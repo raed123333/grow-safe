@@ -17,7 +17,7 @@ const Parent =  sequelize.define("Parent",{
         },
         image:{
                 type:DataTypes.STRING,
-                allowNull:false,
+                allowNull:true,
                 
         },
         email:{

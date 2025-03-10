@@ -31,6 +31,7 @@ export const login = async (loginData: LoginRequest): Promise<AuthResponse> => {
     const response = await axiosInstance.post<AuthResponse>('/parents/login', loginData);
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
