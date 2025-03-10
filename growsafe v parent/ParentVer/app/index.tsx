@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet,Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "./types"; // Import the types
+ // Import the types
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Link } from 'expo-router';
+// types.ts
+export type RootStackParamList = {
+        Index: undefined; // No params for the Index screen
+        CreateAccount: undefined; // No params for CreateAccount screen
+        // Add other screens if necessary
+      };
+      
 
 const Index = () => {
   const [primaryButtonScale, setPrimaryButtonScale] = useState(1);
@@ -42,7 +49,7 @@ const Index = () => {
         onPressOut={handlePrimaryPressOut}
         
       >
-      <Link href="/screens/CreateAccount" asChild>
+      <Link href="/(auth)/signup" asChild>
       
         <Text style={styles.buttonText}>Créer un compte</Text>
         </Link>

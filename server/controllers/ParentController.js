@@ -35,3 +35,35 @@ exports.deleteParent=async (req,res)=>{
 
         }
 }
+
+
+/////////////////////////////////////////////////////////////////
+// ParentController.js
+
+
+
+// Login a Parent
+exports.loginParent = async (req, res) => {
+  try {
+    const { email, motpasse } = req.body;
+
+    // Find the parent by email
+    const parent = await Parent.findOne({ where: { email } });
+    
+    if (!parent) {
+      return res.status(404).json({ error: 'Parent non trouvé' });
+    }
+
+    // Compare the entered password with the hashed password in the database
+    const isPasswordValid = motpasse==parent.motpasse;
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Mot de passe incorrect' });
+    }
+
+    // Successful login
+    res.status(200).json({ message: 'Connexion réussie', parent });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
