@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { signup } from '../../service/auth';
 
@@ -18,7 +18,7 @@ const SignupScreen = () => {
         allowsEditing: true,
         aspect: [4, 4],
         quality: 1,
-        base64: true, // Convertir en base64
+        base64: true, 
       });
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
@@ -33,10 +33,16 @@ const SignupScreen = () => {
   };
 
   const handleSignup = async () => {
+    if (!nom || !prenom || !email || !motpasse) {
+      Alert.alert("Erreur", "Veuillez remplir tous les champs.");
+      return;
+    }
+    
     const signupData = { nom, prenom, image, email, motpasse };
     try {
       const response = await signup(signupData);
       console.log('Signup successful', response);
+      Alert.alert("Succès", "Compte créé avec succès !");
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error(err);

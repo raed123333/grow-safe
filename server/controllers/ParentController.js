@@ -1,26 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-const Parent = require('../models/Parent'); // Import your model
-
-// Function to save base64 as an image file
+const Parent = require('../models/Parent'); 
 const saveBase64Image = (base64String, folder = 'uploads') => {
          const matches = base64String.match(/^data:(.+);base64,(.+)$/);
           if (!matches) return null; 
           const ext = matches[1].split('/')[1];
-           // Extract file extension 
             const base64Data = matches[2];
-             // Extract base64 content
               const fileName = `${Date.now()}.${ext}`;
-               // Generate unique filename
-               //Define the uploads folder outside the controller
+              
                const uploadDir = path.join(__dirname, '..', folder); 
                const filePath = path.join(uploadDir, fileName); 
                   if (!fs.existsSync(uploadDir)) { fs.mkdirSync(uploadDir, { recursive: true }); }
-                   // Write the image file
-                   fs.writeFileSync(filePath, base64Data, 'base64'); return fileName; // Return the saved filename 
+                  
+                   fs.writeFileSync(filePath, base64Data, 'base64'); return fileName; 
                   };  
 
-// Create a new Parent
 
 exports.createParent = async (req, res) => {
   try {

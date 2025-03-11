@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
 });
 
-// Sync Database & Start Server
+
 sequelize
   .sync({ force: false }) 
   .then(() => console.log(" Database & tables synced"))

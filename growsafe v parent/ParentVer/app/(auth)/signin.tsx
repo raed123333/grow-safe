@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { login } from '../../service/auth'; // assuming authService contains signup logic
+import { login } from '../../service/auth'; 
 import { router } from 'expo-router';
 import { useSession } from '@/context/ctx';
 
@@ -22,9 +22,8 @@ const SigninScreen = () => {
     try {
       const response = await login(signupData); 
       signIn();
-      // Navigate after signing in. You may want to tweak this to ensure sign-in is
-      // successful before navigating.
-      router.replace('/home');// call signup service
+      
+      router.replace('/home');
    
       console.log('Signup successful', response);
     } catch (err) {
