@@ -41,19 +41,21 @@ exports.updateParent = async (req, res) => {
     const parent = await Parent.findByPk(req.params.idp);
     if (!parent) return res.status(404).json({ error: 'Parent non trouvé' });
 
-    const { nom, prenom, email, motpasse, image } = req.body;
+    const { nom, prenom, motpasse, image } = req.body;
 
     let imageName = parent.image;
     if (image) {
-      imageName = saveBase64Image(image); // Save new image
+      imageName = saveBase64Image(image);
     }
 
-    await parent.update({ nom, prenom, email, motpasse, image: imageName });
+    await parent.update({ nom, prenom, motpasse, image: imageName });
+
     res.json({ message: 'Parent mis à jour', parent });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 // Login a Parent
 exports.loginParent = async (req, res) => {
         try {
@@ -61,6 +63,8 @@ exports.loginParent = async (req, res) => {
       
           // Find the parent by email
           const parent = await Parent.findOne({ where: { email } });
+          
+          
           
           if (!parent) {
             return res.status(404).json({ error: 'Parent non trouvé' });
@@ -95,3 +99,24 @@ exports.deleteParent=async (req,res)=>{
         }
 }
 
+// Get all Parents
+exports.getAllParents = async (req, res) => {
+  try {
+    const parents = await Parent.findAll();
+    res.status(200).json(parents);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get a Parent by ID
+exports.getParentById = async (req, res) => {
+  try {
+    const parent = await Parent.findByPk(req.params.idp);
+    if (!parent) return res.status(404).json({ error: 'Parent non trouvé' });
+
+    res.status(200).json(parent);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

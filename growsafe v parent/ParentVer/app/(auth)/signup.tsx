@@ -37,17 +37,18 @@ const SignupScreen = () => {
       Alert.alert("Erreur", "Veuillez remplir tous les champs.");
       return;
     }
-    
+  
     const signupData = { nom, prenom, image, email, motpasse };
     try {
       const response = await signup(signupData);
       console.log('Signup successful', response);
-      Alert.alert("Succès", "Compte créé avec succès !");
+      Alert.alert("Succès", "Compte créé avec succès ! Vérifiez votre email.");
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error(err);
     }
   };
+  
 
   return (
     <View style={styles.container}>

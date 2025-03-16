@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { login } from '../../service/auth'; 
 import { router } from 'expo-router';
 import { useSession } from '@/context/ctx';
-
-
-
 
 const SigninScreen = () => {
   const { signIn } = useSession();
@@ -14,43 +11,52 @@ const SigninScreen = () => {
   const [error, setError] = useState('');
 
   const handleSignin = async () => {
-    const signupData = {
-      email,
-      motpasse
-    };
+    const signupData = { email, motpasse };
 
     try {
       const response = await login(signupData); 
-      signIn();
-      
-      router.replace('/home');
-   
-      console.log('Signup successful', response);
+      if (response?.parent) {
+        signIn(response.parent);
+        router.replace('/home'); 
+      } else {
+        setError('Identifiants invalides');
+      }
     } catch (err) {
-      setError('Signup failed. Please try again.');
-      console.error(err);
+      setError('Connexion échouée. Réessayez.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
+      <Text style={styles.title}>Bienvenue</Text>
+      <Text style={styles.subtitle}>Connectez-vous pour continuer</Text>
+
+      <TextInput 
+        style={styles.input} 
+        placeholder="Email" 
+        placeholderTextColor="#B0B3C1" 
+        value={email} 
+        onChangeText={setEmail} 
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de Passe"
-        secureTextEntry
-        value={motpasse}
-        onChangeText={setMotpasse}
+      <TextInput 
+        style={styles.input} 
+        placeholder="Mot de Passe" 
+        placeholderTextColor="#B0B3C1" 
+        secureTextEntry 
+        value={motpasse} 
+        onChangeText={setMotpasse} 
       />
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
 
-      <Button title="Sign In" onPress={handleSignin} />
+      <TouchableOpacity style={styles.primaryButton} onPress={handleSignin}>
+        <Text style={styles.buttonText}>Se connecter</Text>
+      </TouchableOpacity>
+
+      {/* Add the "Créer un compte" button */}
+      <TouchableOpacity style={styles.secondaryButton} onPress={() => router.push('/signup')}>
+        <Text style={styles.buttonText}>Créer un compte</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -59,19 +65,56 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16
+    alignItems: 'center',
+    backgroundColor: '#1E1E2D',
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#B0B3C1',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingLeft: 8
+    height: 50,
+    width: '85%',
+    backgroundColor: '#3A3F55',
+    borderRadius: 8,
+    paddingLeft: 15,
+    color: '#FFFFFF',
+    marginBottom: 15,
   },
   error: {
     color: 'red',
-    marginBottom: 12
-  }
+    marginBottom: 15,
+  },
+  primaryButton: {
+    backgroundColor: '#007BFF',
+    padding: 15,
+    borderRadius: 8,
+    width: '85%',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  secondaryButton: {
+    backgroundColor: '#3A3F55',
+    padding: 15,
+    borderRadius: 8,
+    width: '85%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
 export default SigninScreen;

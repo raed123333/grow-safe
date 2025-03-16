@@ -1,7 +1,9 @@
 import { Text } from 'react-native';
-import { Redirect, Stack } from 'expo-router';
+import { Redirect} from 'expo-router';
 
 import { useSession } from '../../context/ctx';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Tabs } from 'expo-router';
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();
@@ -21,5 +23,34 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />;
+  return  <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
+  <Tabs.Screen
+    name="index"
+    options={{
+      title: 'Home',
+      tabBarIcon: ({ color }) => <FontAwesome size={28} name="tachometer" color={color} />,
+    }}
+  />
+  <Tabs.Screen
+    name="chat"
+    options={{
+      title: 'chat',
+      tabBarIcon: ({ color }) => <FontAwesome size={28} name="snapchat" color={color} />,
+    }}
+  />
+  <Tabs.Screen
+    name="profile"
+    options={{
+      title: 'Profile',
+      tabBarIcon: ({ color }) => <FontAwesome size={28} name="users" color={color} />,
+    }}
+  />
+  <Tabs.Screen
+    name="controleParental"
+    options={{
+      title: 'controle',
+      tabBarIcon: ({ color }) => <FontAwesome size={28} name="navicon" color={color} />,
+    }}
+  />
+</Tabs>
 }

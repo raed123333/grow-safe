@@ -1,7 +1,9 @@
 const express =require('express');
-const {createParent,updateParent,deleteParent,loginParent} = require('../controllers/ParentController');
+const {createParent,updateParent,deleteParent,loginParent,getParentById} = require('../controllers/ParentController');
 
 const router = express.Router();
+
+router.get('/:idp', getParentById);
 
 router.post('/', createParent);
 

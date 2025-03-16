@@ -52,16 +52,33 @@ const Index = () => {
         <Text style={styles.buttonText}>Créer un compte</Text>
         </Link>
       </TouchableOpacity>
-
-      {/* Secondary Button */}
-      <TouchableOpacity
-        style={[styles.secondaryButton, { transform: [{ scale: secondaryButtonScale }] }]}
-        onPressIn={handleSecondaryPressIn}
-        onPressOut={handleSecondaryPressOut}
-        onPress={() => navigation.navigate("Login")} 
+            {/* Primary Button */}
+            <TouchableOpacity
+        style={[styles.primaryButton, { transform: [{ scale: primaryButtonScale }] }]}
+        onPressIn={handlePrimaryPressIn}
+        onPressOut={handlePrimaryPressOut}
+        
       >
-        <Text style={styles.buttonText}>Connexion</Text>
+      <Link href="/(auth)/camera" asChild>
+      
+        <Text style={styles.buttonText}>take picture</Text>
+        </Link>
       </TouchableOpacity>
+            {/* Primary Button */}
+            <TouchableOpacity
+        style={[styles.secondaryButton, { transform: [{ scale: secondaryButtonScale }] }]}
+        onPressIn={handlePrimaryPressIn}
+        onPressOut={handlePrimaryPressOut}
+        
+      >
+      <Link href="/(auth)/signin" asChild>
+      
+        <Text style={styles.buttonText}>connexion</Text>
+        </Link>
+      </TouchableOpacity>
+      
+
+
     </View>
   );
 };
