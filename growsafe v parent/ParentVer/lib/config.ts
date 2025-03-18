@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getToken } from './TokenManager';
-const baseURL = 'http://192.168.1.101:3000/';
+const baseURL = 'http://192.168.1.27:3000/';
 export const AvatarBaseURL = "https://inspiring-wescoff.41-231-54-31.plesk.page/public/users/"
 const axiosInstance = axios.create({
   baseURL: baseURL,

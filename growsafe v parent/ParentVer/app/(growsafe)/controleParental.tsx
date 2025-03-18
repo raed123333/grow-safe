@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 
 const ControleParental = () => {
+  const router = useRouter();
+
   const handleAction = (actionName) => {
     Alert.alert("Action Triggered", `You clicked the ${actionName} button!`);
   };
@@ -27,7 +30,7 @@ const ControleParental = () => {
         <Text style={styles.buttonText}>Localisation</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleAction("Block Apps")}>
+      <TouchableOpacity style={styles.button} onPress={() =>router.navigate('/screen/block') }>
         <Text style={styles.buttonText}>Block Apps</Text>
       </TouchableOpacity>
     </View>

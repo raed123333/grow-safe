@@ -52,18 +52,8 @@ const Index = () => {
         <Text style={styles.buttonText}>Créer un compte</Text>
         </Link>
       </TouchableOpacity>
-            {/* Primary Button */}
-            <TouchableOpacity
-        style={[styles.primaryButton, { transform: [{ scale: primaryButtonScale }] }]}
-        onPressIn={handlePrimaryPressIn}
-        onPressOut={handlePrimaryPressOut}
-        
-      >
-      <Link href="/(auth)/camera" asChild>
-      
-        <Text style={styles.buttonText}>take picture</Text>
-        </Link>
-      </TouchableOpacity>
+           
+           
             {/* Primary Button */}
             <TouchableOpacity
         style={[styles.secondaryButton, { transform: [{ scale: secondaryButtonScale }] }]}

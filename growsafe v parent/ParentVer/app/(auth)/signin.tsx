@@ -6,8 +6,8 @@ import { useSession } from '@/context/ctx';
 
 const SigninScreen = () => {
   const { signIn } = useSession();
-  const [email, setEmail] = useState('');
-  const [motpasse, setMotpasse] = useState('');
+  const [email, setEmail] = useState('jabri@work.com');
+  const [motpasse, setMotpasse] = useState('raed');
   const [error, setError] = useState('');
 
   const handleSignin = async () => {
