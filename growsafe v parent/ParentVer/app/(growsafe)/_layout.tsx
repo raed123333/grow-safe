@@ -45,13 +45,7 @@ export default function AppLayout() {
         tabBarIcon: ({ color }) => <FontAwesome size={28} name="users" color={color} />,
       }}
     />
-    <Tabs.Screen
-      name="controleParental"
-      options={{
-        title: 'controle',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="navicon" color={color} />,
-      }}
-    />
+
     <Tabs.Screen
       name="linkenfant"
       options={{

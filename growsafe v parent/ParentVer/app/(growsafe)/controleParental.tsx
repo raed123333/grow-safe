@@ -33,12 +33,11 @@ const ControleParental = () => {
       <TouchableOpacity style={styles.button} onPress={() => router.navigate('/screen/block')}>
         <Text style={styles.buttonText}>Block Apps</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/(growsafe)/linkenfant')}>
-        <Text style={styles.buttonText}>link</Text>
+      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/screen/block')}>
+        <Text style={styles.buttonText}>messenger</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/(growsafe)/screen/enfants')}>
-        <Text style={styles.buttonText}>enfants list</Text>
-      </TouchableOpacity>
+      
+      
     </View>
   );
 };

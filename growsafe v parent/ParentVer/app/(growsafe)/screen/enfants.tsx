@@ -2,6 +2,7 @@ import { useSession } from '@/context/ctx';
 import React from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Link } from 'expo-router';
 
 export default function Enfants() {
         const { session } = useSession();
@@ -11,11 +12,12 @@ export default function Enfants() {
         const renderItem = ({ item }) => (
                 <TouchableOpacity
                         style={styles.itemContainer}
-                        onPress={() => navigation.navigate('controle', { enfant: item })}
                 >
-                        <Text style={styles.itemText}>Nom: {item.nom}</Text>
-                        <Text style={styles.itemText}>Prénom: {item.prenom}</Text>
-                        <Text style={styles.itemText}>IP: {item.ip}</Text>
+                        <Link href="../controleParental">
+                                <Text style={styles.itemText}>Nom: {item.nom}</Text>
+                                <Text style={styles.itemText}>Prénom: {item.prenom}</Text>
+                                <Text style={styles.itemText}>IP: {item.ip}</Text>
+                        </Link>
                 </TouchableOpacity>
         );
 
