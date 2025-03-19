@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const Parent = require("../models/Parent");
+const Enfant = require("../models/Enfant");
 const axios = require("axios");
 
 const saveBase64Image = (base64String, folder = "uploads") => {
@@ -65,31 +66,69 @@ exports.updateParent = async (req, res) => {
   }
 };
 
+// Login a Parentconst { Parent, Enfant } = require("../models"); // Assurez-vous d'importer Enfant
+
 // Login a Parent
 exports.loginParent = async (req, res) => {
   try {
     const { email, motpasse } = req.body;
 
-    // Find the parent by email
+    // Trouver le parent par email
     const parent = await Parent.findOne({ where: { email } });
 
     if (!parent) {
       return res.status(404).json({ error: "Parent non trouvé" });
     }
 
-    // Compare the entered password with the hashed password in the database
+    // Vérifier le mot de passe (doit être sécurisé avec bcrypt dans un vrai projet)
     const isPasswordValid = motpasse == parent.motpasse;
 
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Mot de passe incorrect" });
     }
 
-    // Successful login
-    res.status(200).json({ message: "Connexion réussie", parent });
+    // Récupérer les enfants liés à ce parent
+    const enfants = await Enfant.findAll({ where: { idp: parent.idp } });
+
+    // Réponse avec le parent et ses enfants
+    res.status(200).json({
+      message: "Connexion réussie",
+      parent,
+      enfants, // Ajout des enfants dans la réponse
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+
+
+exports.linkEnfantToParent = async (req, res) => {
+  try {
+    const { idp, idenf } = req.params;
+
+    // Vérifier si le parent existe
+    const parent = await Parent.findByPk(idp);
+    if (!parent) {
+      return res.status(404).json({ error: "Parent non trouvé" });
+    }
+
+    // Vérifier si l'enfant existe
+    const enfant = await Enfant.findByPk(idenf);
+    if (!enfant) {
+      return res.status(404).json({ error: "Enfant non trouvé" });
+    }
+
+    // Mettre à jour l'enfant avec l'ID du parent
+    await enfant.update({ idp });
+
+    res.status(200).json({ message: "Enfant lié au parent avec succès", enfant });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 
 //delete a Parent
 exports.deleteParent = async (req, res) => {
@@ -127,13 +166,27 @@ exports.getParentById = async (req, res) => {
 
 exports.getEnfantApps = async (req, res) => {
   try {
-    const response = await axios.get("http://192.168.1.101:8080/get-apps");
+    const { idenf } = req.params; // Récupérer l'ID de l'enfant depuis les paramètres de la requête
+
+    // Récupérer l'enfant depuis la base de données
+    const enfant = await Enfant.findByPk(idenf);
+
+    if (!enfant) {
+      return res.status(404).json({ error: "Enfant non trouvé" });
+    }
+
+    const Ip = enfant.ip; // Récupérer l'adresse IP stockée
+
+    // Envoyer la requête à l'IP de l'enfant
+    const response = await axios.get(`http://${Ip}:5555/get-apps`);
+
     res.json(response.data);
   } catch (error) {
-    console.error("Error fetching app list:", error);
-    res.status(500).send("Error fetching app list");
+    console.error("Erreur lors de la récupération de la liste des applications:", error);
+    res.status(500).send("Erreur lors de la récupération de la liste des applications");
   }
 };
+
 
 exports.lockEnfantApps = async (req, res) => {
   console.log("Received body:", req.body); // Log to see what is received
@@ -156,7 +209,7 @@ exports.lockEnfantApps = async (req, res) => {
 
     // Send the data as JSON
     const response = await axios.post(
-      "http://192.168.1.101:8080/lock-app",
+      `http://${Ip}:5555/lock-app`,
       {
         packageName,
         password,
@@ -175,3 +228,6 @@ exports.lockEnfantApps = async (req, res) => {
     res.status(500).send("Error locking app");
   }
 };
+
+
+

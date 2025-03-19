@@ -10,6 +10,7 @@ const messengerRoutes = require("./routes/messengerRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const donneeRoutes = require("./routes/donneeRoutes");
 const bodyParser = require('body-parser');
+const path = require("path");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/parents", parentRoutes);
 app.use("/enfants", enfantRoutes);

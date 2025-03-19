@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <Button
+        android:id="@+id/btnGetLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get My Location"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/black"
+        android:padding="16dp"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address details will appear here..."
+        android:layout_below="@id/btnGetLocation"
+        android:layout_marginTop="30dp"
+        android:padding="16dp"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp" />
+
+</RelativeLayout>

@@ -19,6 +19,11 @@ const Enfant =  sequelize.define("Enfant", {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        ip: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
         idp: {
             type: DataTypes.INTEGER,
             references: {

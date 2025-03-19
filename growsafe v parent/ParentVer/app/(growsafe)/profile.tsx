@@ -2,11 +2,13 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, ActivityIndicat
 import React, { useState, useEffect } from 'react';
 import { useSession } from '../../context/ctx';
 import { useNavigation } from '@react-navigation/native';
+import { AvatarBaseURL } from '@/lib/config';
 
 const Profile = () => {
   const { session, signOut } = useSession();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
+  console.log(session);
 
   useEffect(() => {
     if (session) {
@@ -34,7 +36,7 @@ const Profile = () => {
           style: "destructive",
           onPress: async () => {
             try {
-              const response = await fetch(`http://192.168.1.101:3000/parents/${session.idp}`, {
+              const response = await fetch(`http://192.168.1.101:3000/parents/${session.parent.idp}`, {
                 method: "DELETE",
               });
 
@@ -58,19 +60,16 @@ const Profile = () => {
 
   return (
     <View style={styles.container}>
-      {session.image ? (
-        <Image 
-          source={{ uri: `http://192.168.1.101:3000/uploads/${session.image}` }}
-          style={styles.profileImage} 
-        />
-      ) : (
-        <Text style={styles.text}>Aucune image de profil</Text>
-      )}
+      <Image
+        source={{ uri: `${AvatarBaseURL}/${session.image}` }}
+        style={styles.profileImage}
+      />
 
-      <Text style={styles.name}>{session.nom} {session.prenom}</Text>
-      <Text style={styles.email}>{session.email}</Text>
+
+      <Text style={styles.name}>{session.parent.nom} {session.parent.prenom}</Text>
+      <Text style={styles.email}>{session.parent.email}</Text>
       <Text style={styles.text}>Mot de Passe: ******</Text>
-      <Text style={styles.text}>ID Parent: {session.idp}</Text>
+      <Text style={styles.text}>ID Parent: {session.parent.idp}</Text>
 
       <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
         <Text style={styles.logoutText}>Se déconnecter</Text>
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
   profileImage: {
     width: 120,
     height: 120,
+    resizeMode: "contain",
     borderRadius: 60,
     marginBottom: 10,
     backgroundColor: '#ddd',

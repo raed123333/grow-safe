@@ -23,8 +23,8 @@ exports.getEnfantById=async (req,res)=>{
 //create a new Enfant
 exports.createEnfant=async(req,res)=>{
         try{
-                const{nom,prenom,motpasse,idp}=req.body;
-                const newEnfant=await Enfant.create({nom,prenom,motpasse,idp});
+                const{nom,prenom,motpasse,idp,ip}=req.body;
+                const newEnfant=await Enfant.create({nom,prenom,motpasse,idp,ip});
                 res.status(201).json(newEnfant);
         }catch(err){
                 res.status(400).json({error:err.message});

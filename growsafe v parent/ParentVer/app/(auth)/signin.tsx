@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { login } from '../../service/auth'; 
+import { login } from '../../service/auth';
 import { router } from 'expo-router';
 import { useSession } from '@/context/ctx';
 
@@ -14,10 +14,16 @@ const SigninScreen = () => {
     const signupData = { email, motpasse };
 
     try {
-      const response = await login(signupData); 
+      const response = await login(signupData); // Get response from the login service
       if (response?.parent) {
-        signIn(response.parent);
-        router.replace('/home'); 
+        // Save both parent and enfants data
+        const userData = {
+          parent: response.parent,
+          enfants: response.enfants || [], // In case there are no children, we set it as an empty array
+        };
+
+        signIn(userData); // Pass the data to the signIn function
+        router.replace('/home'); // Navigate to the home page
       } else {
         setError('Identifiants invalides');
       }
@@ -26,25 +32,26 @@ const SigninScreen = () => {
     }
   };
 
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenue</Text>
       <Text style={styles.subtitle}>Connectez-vous pour continuer</Text>
 
-      <TextInput 
-        style={styles.input} 
-        placeholder="Email" 
-        placeholderTextColor="#B0B3C1" 
-        value={email} 
-        onChangeText={setEmail} 
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#B0B3C1"
+        value={email}
+        onChangeText={setEmail}
       />
-      <TextInput 
-        style={styles.input} 
-        placeholder="Mot de Passe" 
-        placeholderTextColor="#B0B3C1" 
-        secureTextEntry 
-        value={motpasse} 
-        onChangeText={setMotpasse} 
+      <TextInput
+        style={styles.input}
+        placeholder="Mot de Passe"
+        placeholderTextColor="#B0B3C1"
+        secureTextEntry
+        value={motpasse}
+        onChangeText={setMotpasse}
       />
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
