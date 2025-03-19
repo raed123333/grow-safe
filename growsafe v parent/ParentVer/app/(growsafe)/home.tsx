@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useSession } from '../../context/ctx';
+import { Link } from 'expo-router';
 
 export default function Home() {
   const { session, signOut } = useSession();
@@ -9,7 +10,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       {/* Greeting */}
-      <Text style={styles.greeting}>Bienvenue, {session?.nom} {session?.prenom} !</Text>
+      <Text style={styles.greeting}>Bienvenue, {session?.parent.prenom} {session?.parent.nom}  !</Text>
 
       {/* Marketing Section */}
       <View style={styles.marketingSection}>
@@ -22,6 +23,11 @@ export default function Home() {
           style={styles.marketingImage}
         />
       </View>
+      <TouchableOpacity style={styles.signOutButton} >
+        <Link href="linkenfant" >
+          <Text style={styles.signOutText}>Lier un enfant</Text>
+        </Link>
+      </TouchableOpacity>
 
       {/* Sign Out Button */}
       <TouchableOpacity style={styles.signOutButton} onPress={signOut}>
@@ -43,14 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#4682B4', // New color for the greeting (SteelBlue)
-    marginBottom: 20,
+    marginBottom: 10,
   },
   marketingSection: {
     backgroundColor: '#4B5A6A',
     padding: 20,
     borderRadius: 12,
     width: '100%',
-    marginBottom: 20, // Reduced the margin between the card and button
+    marginBottom: 2, // Reduced the margin between the card and button
     alignItems: 'center',
   },
   marketingTitle: {
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
   marketingDescription: {
     fontSize: 16,
     color: '#B0B3C1',
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'center',
     width: '80%',
   },

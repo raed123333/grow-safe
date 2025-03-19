@@ -56,7 +56,7 @@ export default function AppLayout() {
       name="linkenfant"
       options={{
         title: 'controle',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="navicon" color={color} />,
+        tabBarIcon: ({ color }) => <FontAwesome size={28} name="snapchat-ghost" color={color} />,
       }}
     />
   </Tabs>

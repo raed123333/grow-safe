@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { signup } from '../../service/auth';
 
+type RootStackParamList = {
+  Home: undefined; // Change 'Home' to your main screen name
+  Signup: undefined;
+};
+
 const SignupScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
   const [image, setImage] = useState<string | null>(null);
@@ -18,7 +26,7 @@ const SignupScreen = () => {
         allowsEditing: true,
         aspect: [4, 4],
         quality: 1,
-        base64: true, 
+        base64: true,
       });
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
@@ -37,18 +45,19 @@ const SignupScreen = () => {
       Alert.alert("Erreur", "Veuillez remplir tous les champs.");
       return;
     }
-  
+
     const signupData = { nom, prenom, image, email, motpasse };
     try {
       const response = await signup(signupData);
       console.log('Signup successful', response);
-      Alert.alert("Succès", "Compte créé avec succès ! Vérifiez votre email.");
+      Alert.alert("Succès", "Compte créé avec succès !", [
+        { text: "OK", onPress: () => navigation.replace("Home") } // Navigate after successful signup
+      ]);
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error(err);
     }
   };
-  
 
   return (
     <View style={styles.container}>

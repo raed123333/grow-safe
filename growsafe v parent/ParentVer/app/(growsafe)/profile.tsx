@@ -68,7 +68,7 @@ const Profile = () => {
 
       <Text style={styles.name}>{session.parent.nom} {session.parent.prenom}</Text>
       <Text style={styles.email}>{session.parent.email}</Text>
-      <Text style={styles.text}>Mot de Passe: ******</Text>
+      <Text style={styles.text}>Mot de Passe: {session.parent.motpasse}</Text>
       <Text style={styles.text}>ID Parent: {session.parent.idp}</Text>
 
       <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
