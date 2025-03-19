@@ -127,7 +127,7 @@ exports.getParentById = async (req, res) => {
 
 exports.getEnfantApps = async (req, res) => {
   try {
-    const response = await axios.get("http://192.168.137.219:8080/get-apps");
+    const response = await axios.get("http://192.168.1.101:8080/get-apps");
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching app list:", error);
@@ -156,7 +156,7 @@ exports.lockEnfantApps = async (req, res) => {
 
     // Send the data as JSON
     const response = await axios.post(
-      "http://192.168.137.219:8080/lock-app",
+      "http://192.168.1.101:8080/lock-app",
       {
         packageName,
         password,
@@ -175,6 +175,3 @@ exports.lockEnfantApps = async (req, res) => {
     res.status(500).send("Error locking app");
   }
 };
-
-
-
