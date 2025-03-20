@@ -18,6 +18,9 @@ export default function Home() {
         <Text style={styles.marketingDescription}>
           Explorez les fonctionnalités uniques que nous offrons pour améliorer la sécurité et la gestion de vos enfants, à portée de main.
         </Text>
+        <Link href="../guide">
+          <Text>cliquez ici ! </Text>
+        </Link>
         <Image
           source={require('../../assets/images/home.png')} // Add your marketing image
           style={styles.marketingImage}

@@ -23,12 +23,12 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Tabs screenOptions={{ tabBarActiveTintColor: 'black' }}>
+  return <Tabs screenOptions={{ tabBarActiveTintColor: '#261FB3', tabBarInactiveTintColor: '#FBE4D6', tabBarStyle: { backgroundColor: '#8AB2A6' }, }}>
     <Tabs.Screen
       name="index"
       options={{
         title: 'Home',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="houzz" color={color} />,
+        tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
         headerShown: false,
       }}
     />
@@ -47,8 +47,16 @@ export default function AppLayout() {
         headerShown: false,
       }}
     />
+
     <Tabs.Screen
       name="screen/block"
+      options={{
+        href: null,
+        headerShown: false,
+      }}
+    />
+    <Tabs.Screen
+      name="screen/guide"
       options={{
         href: null,
         headerShown: false,
@@ -72,7 +80,11 @@ export default function AppLayout() {
     />
     <Tabs.Screen
       name="screen/enfants"
-      options={{ headerShown: false }}
+      options={{
+        title: 'enfants',
+        tabBarIcon: ({ color }) => <FontAwesome size={28} name="list" color={color} />,
+        headerShown: false
+      }}
     />
     <Tabs.Screen
       name="home"
