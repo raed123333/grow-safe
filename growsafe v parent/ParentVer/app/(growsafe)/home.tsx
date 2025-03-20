@@ -18,16 +18,20 @@ export default function Home() {
         <Text style={styles.marketingDescription}>
           Explorez les fonctionnalités uniques que nous offrons pour améliorer la sécurité et la gestion de vos enfants, à portée de main.
         </Text>
-        <Link href="../guide">
-          <Text>cliquez ici ! </Text>
+
+        {/* Styled Text for "Cliquez ici !" */}
+        <Link href="../screen/guide">
+          <Text style={styles.clickHereText}>Cliquez ici !</Text>
         </Link>
+
         <Image
           source={require('../../assets/images/home.png')} // Add your marketing image
           style={styles.marketingImage}
         />
       </View>
-      <TouchableOpacity style={styles.signOutButton} >
-        <Link href="linkenfant" >
+
+      <TouchableOpacity style={styles.signOutButton}>
+        <Link href="/linkenfant">
           <Text style={styles.signOutText}>Lier un enfant</Text>
         </Link>
       </TouchableOpacity>
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#4682B4', // New color for the greeting (SteelBlue)
+    color: '#4682B4',
     marginBottom: 10,
   },
   marketingSection: {
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     width: '100%',
-    marginBottom: 2, // Reduced the margin between the card and button
+    marginBottom: 2,
     alignItems: 'center',
   },
   marketingTitle: {
@@ -81,17 +85,24 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginTop: 15,
   },
+  clickHereText: {
+    color: '#8AB2A6',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 15,
+  },
   signOutButton: {
-    backgroundColor: '#1E90FF', // Blue color for button
-    padding: 12, // Increased padding for bigger button
+    backgroundColor: '#1E90FF',
+    padding: 12,
     borderRadius: 8,
-    width: '70%', // Adjusted width to make the button larger
+    width: '70%',
     alignItems: 'center',
-    marginTop: 10, // Reduced space between button and card
+    marginTop: 10,
   },
   signOutText: {
     color: '#FFFFFF',
-    fontSize: 16, // Adjusted font size for the bigger button
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

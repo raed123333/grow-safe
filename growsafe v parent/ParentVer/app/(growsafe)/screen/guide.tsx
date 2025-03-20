@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
   remarque: {
     fontSize: 16,
     fontStyle: "italic",
-    color: "#8AB2A6",  // You can choose the color that fits your design
+    color: "gray",
     textAlign: "center",
-    marginBottom: 20, // Space between remark and next step
+    marginBottom: 20,
   },
   primaryButton: {
     marginTop: 20,
