@@ -1,4 +1,5 @@
 // import React from 'react';
+
 import {
   SafeAreaView,
   Text,
@@ -7,7 +8,7 @@ import {
   NativeModules,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
+import SignupScreen from './screens/SignupScreen';
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -87,12 +88,14 @@ function App() {
           localisation
         </Text>
       </TouchableOpacity>
+      <SignupScreen/>
+
+
     </SafeAreaView>
   );
 }
 
 export default App;
-
 
 // import React, { useState, useEffect } from "react";
 // import { View, Text, TextInput, Button, FlatList, StyleSheet } from "react-native";

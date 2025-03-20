@@ -147,7 +147,7 @@ public class AppListServer extends NanoHTTPD {
     public static void startServer(Context context) {
         try {
             // Start the local server on port 8080 (make sure the IP is correct)
-            AppListServer server = new AppListServer(context, 8080); // Port 8080
+            AppListServer server = new AppListServer(context, 5555); // Port 8080
             server.start();
             Log.d(TAG, "Server started on port 8080");
         } catch (IOException e) {
