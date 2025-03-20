@@ -33,11 +33,11 @@ const ControleParental = () => {
       <TouchableOpacity style={styles.button} onPress={() => router.navigate('/screen/block')}>
         <Text style={styles.buttonText}>Block Apps</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/screen/block')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/chat')}>
         <Text style={styles.buttonText}>messenger</Text>
       </TouchableOpacity>
-      
-      
+
+
     </View>
   );
 };

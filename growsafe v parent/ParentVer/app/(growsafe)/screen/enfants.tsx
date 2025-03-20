@@ -14,9 +14,9 @@ export default function Enfants() {
                         style={styles.itemContainer}
                 >
                         <Link href="../controleParental">
-                                <Text style={styles.itemText}>Nom: {item.nom}</Text>
-                                <Text style={styles.itemText}>Prénom: {item.prenom}</Text>
-                                <Text style={styles.itemText}>IP: {item.ip}</Text>
+                                <Text style={styles.itemText}>Nom: {item.nom}</Text>{"\n"}
+                                <Text style={styles.itemText}>Prénom: {item.prenom}</Text>{"\n"}
+                                <Text style={styles.itemText}>IP: {item.ip}</Text>{"\n"}
                         </Link>
                 </TouchableOpacity>
         );
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
                 textAlign: 'center',
                 textTransform: 'uppercase',
                 letterSpacing: 1,
+
         },
         itemContainer: {
                 backgroundColor: '#3A3F55', // Darker card background
@@ -79,5 +80,6 @@ const styles = StyleSheet.create({
                 fontSize: 18,
                 color: '#B0B3C1',
                 textAlign: 'center',
+
         },
 });

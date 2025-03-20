@@ -23,19 +23,20 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
+  return <Tabs screenOptions={{ tabBarActiveTintColor: 'black' }}>
     <Tabs.Screen
       name="index"
       options={{
         title: 'Home',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="tachometer" color={color} />,
+        tabBarIcon: ({ color }) => <FontAwesome size={28} name="houzz" color={color} />,
+        headerShown: false,
       }}
     />
     <Tabs.Screen
       name="chat"
       options={{
-        title: 'chat',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="snapchat" color={color} />,
+        href: null,
+        headerShown: false,
       }}
     />
     <Tabs.Screen
@@ -43,15 +44,40 @@ export default function AppLayout() {
       options={{
         title: 'Profile',
         tabBarIcon: ({ color }) => <FontAwesome size={28} name="users" color={color} />,
+        headerShown: false,
       }}
     />
+    <Tabs.Screen
+      name="screen/block"
+      options={{
+        href: null,
+        headerShown: false,
+      }}
+    />
+
 
     <Tabs.Screen
       name="linkenfant"
       options={{
-        title: 'controle',
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="snapchat-ghost" color={color} />,
+        href: null,
+        headerShown: false,
       }}
     />
+    <Tabs.Screen
+      name="controleParental"
+      options={{
+        href: null,
+        headerShown: false,
+      }}
+    />
+    <Tabs.Screen
+      name="screen/enfants"
+      options={{ headerShown: false }}
+    />
+    <Tabs.Screen
+      name="home"
+      options={{ headerShown: false }}
+    />
+
   </Tabs>
 }
