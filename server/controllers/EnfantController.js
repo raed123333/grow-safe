@@ -59,3 +59,18 @@ exports.deleteEnfant=async(req,res)=>{
                 res.status(500).json({error:err.message});
         }
 }
+
+
+//login enfant 
+
+exports.loginEnfant=async(req,res)=>{
+        try{
+                const {nom, motpasse}=req.body;
+                const enfant=await Enfant.findOne({where:{nom,motpasse}});
+                if(!enfant) return res.status(404).json({error:"Enfant non trouvé"});
+                res.json(enfant);
+        }catch(err){
+                res.status(500).json({error:err.message});
+        }
+}
+
