@@ -51,12 +51,13 @@ const SignupScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       
-      {/* Logo */}
       
       {/* Title */}
       <Text style={styles.title}>Bienvenue sur GrowSafe Kids</Text>
       <Text style={styles.subtitle}>Sécurité et fun pour vos enfants 🎉</Text>
 
+      {/* Logo */}
+      <Image source={require("../assets/images/photo.png")} style={styles.logo} />
       {/* Input Fields */}
       <TextInput
         placeholder="Nom"
