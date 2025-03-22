@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Image, StatusBar } from "react-native";
 import axios from "axios";
 import DeviceInfo from "react-native-device-info";
 
@@ -37,7 +37,7 @@ const SignupScreen = ({ navigation }) => {
 
       if (response.data.success) {
         Alert.alert("Succès", "Compte créé avec succès !");
-        navigation.navigate("Home"); // Redirection vers la page principale
+        navigation.navigate("Home");
       } else {
         Alert.alert("Erreur", response.data.message);
       }
@@ -49,19 +49,28 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Créer un compte</Text>
+      <StatusBar barStyle="light-content" />
+      
+      {/* Logo */}
+      
+      {/* Title */}
+      <Text style={styles.title}>Bienvenue sur GrowSafe Kids</Text>
+      <Text style={styles.subtitle}>Sécurité et fun pour vos enfants 🎉</Text>
 
+      {/* Input Fields */}
       <TextInput
         placeholder="Nom"
         value={nom}
         onChangeText={setNom}
         style={styles.input}
+        placeholderTextColor="#B0B3C1"
       />
       <TextInput
         placeholder="Prénom"
         value={prenom}
         onChangeText={setPrenom}
         style={styles.input}
+        placeholderTextColor="#B0B3C1"
       />
       <TextInput
         placeholder="Mot de passe"
@@ -69,24 +78,81 @@ const SignupScreen = ({ navigation }) => {
         onChangeText={setMotpasse}
         secureTextEntry
         style={styles.input}
+        placeholderTextColor="#B0B3C1"
       />
 
+      {/* Signup Button */}
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>S'inscrire</Text>
+        <Text style={styles.buttonText}>Créer mon compte</Text>
       </TouchableOpacity>
 
-      <Text style={styles.info}>Votre IP : {ip}</Text>
+      {/* IP Info */}
+      <Text style={styles.info}>🌍 Votre IP : {ip}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
-  input: { width: "100%", borderWidth: 1, padding: 10, marginBottom: 10, borderRadius: 5 },
-  button: { backgroundColor: "teal", padding: 15, borderRadius: 5 },
-  buttonText: { color: "white", fontWeight: "bold" },
-  info: { marginTop: 10, fontSize: 16 },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#16182D",
+    padding: 20,
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: 15,
+    resizeMode: "contain",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    marginBottom: 5,
+    textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#A0A3C1",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  input: {
+    width: "90%",
+    backgroundColor: "#25273E",
+    color: "#FFFFFF",
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 15,
+    fontSize: 16,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 5,
+  },
+  button: {
+    backgroundColor: "#FF6B81",
+    paddingVertical: 14,
+    borderRadius: 12,
+    width: "90%",
+    alignItems: "center",
+    shadowColor: "#FF6B81",
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  info: {
+    marginTop: 15,
+    fontSize: 14,
+    color: "#B0B3C1",
+  },
 });
 
 export default SignupScreen;
