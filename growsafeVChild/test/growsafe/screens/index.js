@@ -1,16 +1,13 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { View, Text, TouchableOpacity, StyleSheet, Image, StatusBar,NativeModules } from "react-native";
 
-const Index = () => {
-  const navigation = useNavigation(); // Get navigation object
-
+const Index = ({ navigation }) => {
   const handleCreateAccount = () => {
-    navigation.navigate("SignupScreen"); // Ensure 'Signup' screen exists in your navigator
+    navigation.navigate("SignupScre"); 
   };
 
   const handleLogin = () => {
-    navigation.navigate("Login"); // Ensure 'Login' screen exists in your navigator
+    navigation.navigate("Login"); // Replace 'Login' with your actual screen name
   };
 
   return (

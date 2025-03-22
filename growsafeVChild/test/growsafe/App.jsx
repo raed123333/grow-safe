@@ -3,13 +3,14 @@
 import {View} from 'react-native';
 
 import Index from './screens/index';
+import SignupScreen from './screens/SignupScreen';
 function App() {
   
 
   return (
    <>
        
-       <Index />
+       <SignupScreen/>
  
 
    </>
