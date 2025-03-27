@@ -2,15 +2,15 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface User {
-  id: string;
-  name: string;
-  email: string;
+  idenf: string;
+  nom: string;
+  motpasse: string;
 }
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (idenf: string, nom: string, motpasse: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -31,12 +31,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loadUser();
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (id: string, nom: string, motpasse: string) => {
     setIsLoading(true);
     // Simulate API request
-    const fakeUser = { id: '1', name: 'John Doe', email };
-    await AsyncStorage.setItem('user', JSON.stringify(fakeUser));
-    setUser(fakeUser);
+    const User = { id, nom, motpasse };
+    await AsyncStorage.setItem('user', JSON.stringify(User));
+    setUser(User);
     setIsLoading(false);
   };
 
