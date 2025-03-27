@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type RootStackParamList = {
         Index: undefined;
         SignupScreen: undefined;
-        Login: undefined;
+        SigninScreen: undefined;
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, "Index">;
@@ -25,7 +25,7 @@ const Index: React.FC<Props> = ({ navigation }) => {
                                 <Text style={styles.buttonText}>Créer un compte</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={[styles.button, styles.secondaryButton]} onPress={() => navigation.navigate("Login")}>
+                        <TouchableOpacity style={[styles.button, styles.secondaryButton]} onPress={() => navigation.navigate("SigninScreen")}>
                                 <Text style={styles.secondaryButtonText}>Connexion</Text>
                         </TouchableOpacity>
                 </View>
