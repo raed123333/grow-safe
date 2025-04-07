@@ -22,11 +22,11 @@ const ControleParental = () => {
         <Text style={styles.buttonText}>Capture Screen</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleAction("Gestion de Temps")}>
+      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/screen/gestionTemps')}>
         <Text style={styles.buttonText}>Gestion de Temps</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleAction("Localisation")}>
+      <TouchableOpacity style={styles.button} onPress={() => router.navigate('/(growsafe)/screen/localisation')}>
         <Text style={styles.buttonText}>Localisation</Text>
       </TouchableOpacity>
 

@@ -23,7 +23,24 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Tabs screenOptions={{ tabBarActiveTintColor: '#261FB3', tabBarInactiveTintColor: '#FBE4D6', tabBarStyle: { backgroundColor: '#8AB2A6' }, }}>
+  return <Tabs
+    screenOptions={{
+      tabBarActiveTintColor: '#1E90FF', // Active tab text/icon color
+      tabBarInactiveTintColor: '#B0B3C1', // Inactive tab text/icon color
+      tabBarStyle: {
+        backgroundColor: '#282C34', // Tab bar background
+        borderTopColor: '#4B5A6A', // subtle top border
+        height: 70,
+        paddingBottom: 10,
+        paddingTop: 10,
+      },
+      tabBarLabelStyle: {
+        fontSize: 12,
+        fontWeight: '600',
+      },
+    }}
+  >
+
     <Tabs.Screen
       name="index"
       options={{
@@ -57,6 +74,20 @@ export default function AppLayout() {
     />
     <Tabs.Screen
       name="screen/guide"
+      options={{
+        href: null,
+        headerShown: false,
+      }}
+    />
+    <Tabs.Screen
+      name="screen/gestionTemps"
+      options={{
+        href: null,
+        headerShown: false,
+      }}
+    />
+    <Tabs.Screen
+      name="screen/localisation"
       options={{
         href: null,
         headerShown: false,

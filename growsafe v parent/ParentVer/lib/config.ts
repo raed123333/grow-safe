@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from './TokenManager';
-const baseURL = 'http://192.168.100.7:3000/';
-export const AvatarBaseURL = "http://192.168.100.7:3000/uploads/"
+const baseURL = 'http://192.168.1.101:3000/';
+export const AvatarBaseURL = "http://192.168.1.101:3000/uploads/"
 const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 10000,

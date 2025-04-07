@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthProvider';
 
 type RootStackParamList = {
         SigninScreen: undefined;
-        HomeScreen: undefined;
+        Hero: undefined;
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, "SigninScreen">;

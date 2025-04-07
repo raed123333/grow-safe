@@ -25,7 +25,7 @@ export default function Home() {
         </Link>
 
         <Image
-          source={require('../../assets/images/home.png')} // Add your marketing image
+          source={require('../../assets/images/home.png')}
           style={styles.marketingImage}
         />
       </View>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#282C34',
     padding: 20,
+    paddingTop: 60, // 👈 Add extra space at the top
   },
   greeting: {
     fontSize: 24,

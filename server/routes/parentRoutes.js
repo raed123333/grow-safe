@@ -24,7 +24,7 @@ router.delete("/:idp", deleteParent);
 
 router.get("/apps/get-apps/:idenf", getEnfantApps);
 
-router.post("/apps/lock-apps", lockEnfantApps);
+router.post("/apps/lock-apps/:idenf", lockEnfantApps);
 
 router.post("/link/:idp/:idenf", linkEnfantToParent);
 

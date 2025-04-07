@@ -28,6 +28,7 @@ const Block = () => {
         const response = await lockEnfantApps(packageName, password);
         Alert.alert('Succès', response.message);
       } catch (error) {
+        console.log(error.response);
         Alert.alert('Erreur', 'Échec du verrouillage de l\'application');
       }
     } else {

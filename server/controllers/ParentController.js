@@ -201,6 +201,16 @@ exports.lockEnfantApps = async (req, res) => {
   console.log("Password:", password);
 
   try {
+    const { idenf } = req.params; // Récupérer l'ID de l'enfant depuis les paramètres de la requête
+
+    // Récupérer l'enfant depuis la base de données
+    const enfant = await Enfant.findByPk(idenf);
+
+    if (!enfant) {
+      return res.status(404).json({ error: "Enfant non trouvé" });
+    }
+
+    const Ip = enfant.ip; // Récupérer l'adresse IP stockée
     // Log the data being sent to the Android server
     console.log("Sending to Android server:", {
       packageName,

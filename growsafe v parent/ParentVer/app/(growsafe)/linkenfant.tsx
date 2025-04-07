@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Alert, TouchableOpacity, StyleSheet, Pressable } from "react-native";
 import axiosInstance from "@/lib/config";
+import { router } from 'expo-router';
 
 export default function LinkEnfant() {
         const [idParent, setIdParent] = useState("");
@@ -15,7 +16,9 @@ export default function LinkEnfant() {
 
                 try {
                         await axiosInstance.post(`/parents/link/${idParent}/${idEnfant}`);
+                        router.replace('/(growsafe)/controleParental');
                         Alert.alert("Succès", "Enfant lié avec succès !");
+
                 } catch (error) {
                         console.error("Erreur lors de la liaison:", error);
                         Alert.alert("Erreur", "Impossible de lier cet enfant.");

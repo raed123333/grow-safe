@@ -1,22 +1,20 @@
 import { useSession } from '@/context/ctx';
 import React from 'react';
-import { Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Link } from 'expo-router';
 
 export default function Enfants() {
         const { session } = useSession();
         const navigation = useNavigation();
-        let data = session?.enfants || []; // Ensure it's not null or undefined
+        let data = session?.enfants || [];
 
         const renderItem = ({ item }) => (
-                <TouchableOpacity
-                        style={styles.itemContainer}
-                >
+                <TouchableOpacity style={styles.itemContainer}>
                         <Link href="../controleParental">
-                                <Text style={styles.itemText}>Nom: {item.nom}</Text>{"\n"}
-                                <Text style={styles.itemText}>Prénom: {item.prenom}</Text>{"\n"}
-                                <Text style={styles.itemText}>IP: {item.ip}</Text>{"\n"}
+                                <Text style={styles.itemText}>Nom: {item.nom}</Text>
+                                <Text style={styles.itemText}> || Prénom: {item.prenom}</Text>
+                                <Text style={styles.itemText}> || IP: {item.ip}</Text>
                         </Link>
                 </TouchableOpacity>
         );
@@ -32,6 +30,7 @@ export default function Enfants() {
                                         data={data}
                                         renderItem={renderItem}
                                         keyExtractor={(item) => item.idenf.toString()}
+                                        contentContainerStyle={styles.listContent}
                                 />
                         )}
                 </View>
@@ -41,45 +40,44 @@ export default function Enfants() {
 const styles = StyleSheet.create({
         container: {
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#1E1E2D', // Dark theme background
+                backgroundColor: '#282C34',
                 padding: 20,
+                paddingTop: 60, // 👈 Increased top padding
+                alignItems: 'center',
         },
         title: {
-                fontSize: 26,
-                fontWeight: 'bold',
-                color: '#FFFFFF',
+                fontSize: 24,
+                fontWeight: '700',
+                color: '#4682B4',
                 marginBottom: 20,
                 textAlign: 'center',
                 textTransform: 'uppercase',
-                letterSpacing: 1,
-
         },
         itemContainer: {
-                backgroundColor: '#3A3F55', // Darker card background
-                borderRadius: 15, // More rounded
+                backgroundColor: '#4B5A6A',
+                borderRadius: 12,
                 padding: 20,
                 marginBottom: 15,
-                width: '95%', // Wider card
+                width: '100%',
                 shadowColor: '#000',
-                shadowOffset: { width: 0, height: 5 }, // Stronger shadow
-                shadowOpacity: 0.5,
-                shadowRadius: 8,
-                elevation: 10,
+                shadowOffset: { width: 0, height: 5 },
+                shadowOpacity: 0.3,
+                shadowRadius: 6,
+                elevation: 6,
         },
         itemText: {
-                fontSize: 18,
+                fontSize: 16,
                 color: '#FFFFFF',
-                fontWeight: '500',
-                marginBottom: 5,
-                marginRight: 40,
-                marginLeft: 40,
+                marginBottom: 6,
+                textAlign: 'left',
         },
         noData: {
-                fontSize: 18,
+                fontSize: 16,
                 color: '#B0B3C1',
                 textAlign: 'center',
-
+        },
+        listContent: {
+                paddingBottom: 20,
+                width: '100%',
         },
 });
