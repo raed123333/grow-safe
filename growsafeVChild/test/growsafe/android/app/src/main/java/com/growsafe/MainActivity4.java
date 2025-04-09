@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
 import fi.iki.elonen.NanoHTTPD;
 
 public class MainActivity4 extends AppCompatActivity {
@@ -43,7 +47,7 @@ public class MainActivity4 extends AppCompatActivity {
 
         btnGetLocation.setOnClickListener(v -> getLocation());
 
-        // Start HTTP server
+        // Lancer le serveur HTTP embarqué
         try {
             locationServer = new LocationServer();
             locationServer.start();
@@ -65,11 +69,13 @@ public class MainActivity4 extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("MissingPermission")
     private void fetchLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, location -> {
                     if (location != null) {
@@ -84,6 +90,10 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     private String getAddressFromLocation(double latitude, double longitude) {
+        if (!Geocoder.isPresent()) {
+            return "Geocoder not available on this device.";
+        }
+
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses != null && !addresses.isEmpty()) {
@@ -99,7 +109,8 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -118,7 +129,7 @@ public class MainActivity4 extends AppCompatActivity {
         }
     }
 
-    // Embedded HTTP Server
+    // Serveur HTTP local pour exposer la position
     private class LocationServer extends NanoHTTPD {
         public LocationServer() throws IOException {
             super(5555);
@@ -135,5 +146,4 @@ public class MainActivity4 extends AppCompatActivity {
             return newFixedLengthResponse(Response.Status.NOT_FOUND, "text/plain", "Not Found");
         }
     }
-    
 }
