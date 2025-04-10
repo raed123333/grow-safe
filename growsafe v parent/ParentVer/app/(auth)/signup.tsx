@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { signup } from '../../service/auth';
+import { router } from 'expo-router';
 
 type RootStackParamList = {
   Home: undefined; // Change 'Home' to your main screen name
@@ -49,10 +50,9 @@ const SignupScreen = () => {
     const signupData = { nom, prenom, image, email, motpasse };
     try {
       const response = await signup(signupData);
+      router.replace('/home');
       console.log('Signup successful', response);
-      Alert.alert("Succès", "Compte créé avec succès !", [
-        { text: "OK", onPress: () => navigation.replace("Home") } // Navigate after successful signup
-      ]);
+      Alert.alert("Succès", "Compte créé avec succès !");
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error(err);

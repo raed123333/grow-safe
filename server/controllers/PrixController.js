@@ -33,18 +33,28 @@ exports.createPrix=async(req,res)=>{
         }
 }
 //update a Prix
-exports.updatePrix=async(req,res)=>{
-        try{
-                const prix=await Prix.findByPk(req.params.idPrix);
-                if(!prix) return res.status(404).json({error:"aucun Prix"});
-                const {idPrix,nomPrix,scorePrix,statut,idp}=req.body;
-                await Prix.update({nomPrix,scorePrix,statut});
-                res.json(prix);
-
-        }catch(err){
-                res.status(400).json({error:err.message});
+exports.updatePrix = async (req, res) => {
+        try {
+            const prix = await Prix.findByPk(req.params.idPrix);
+            if (!prix) return res.status(404).json({ error: "aucun Prix" });
+    
+            const { nomPrix, scorePrix, statut } = req.body;
+    
+            await Prix.update(
+                { nomPrix, scorePrix, statut },
+                { where: { idPrix: req.params.idPrix } } // <- ici la clause where
+            );
+    
+            // pour renvoyer l'objet mis à jour
+            const updatedPrix = await Prix.findByPk(req.params.idPrix);
+    
+            res.json(updatedPrix);
+    
+        } catch (err) {
+            res.status(400).json({ error: err.message });
         }
-};
+    };
+    
 //delete prix 
 exports.deletePrix=async(req,res)=>{
         try{

@@ -21,7 +21,7 @@ export default function Home() {
 
         {/* Styled Text for "Cliquez ici !" */}
         <Link href="../screen/guide">
-          <Text style={styles.clickHereText}>Cliquez ici !</Text>
+          <Text style={styles.clickHereText}>aide moi!</Text>
         </Link>
 
         <Image
