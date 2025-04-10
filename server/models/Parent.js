@@ -1,4 +1,4 @@
-const {DataTypes} =require("sequelize");
+const {DataTypes, INTEGER} =require("sequelize");
 const sequelize = require("../config/db");
 
 const Parent =  sequelize.define("Parent",{
@@ -33,6 +33,7 @@ const Parent =  sequelize.define("Parent",{
                 allowNull:false,
 
         },
+        
 },{
         timestamps:true, // Adds createdAt and updatedAt fields
 });

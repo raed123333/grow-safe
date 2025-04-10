@@ -23,7 +23,11 @@ const Enfant =  sequelize.define("Enfant", {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        score:{
+            type:DataTypes.INTEGER,
+            allowNull:false
 
+        },
         idp: {
             type: DataTypes.INTEGER,
             references: {
