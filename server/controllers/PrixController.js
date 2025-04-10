@@ -51,7 +51,7 @@ exports.updatePrix = async (req, res) => {
             res.json(updatedPrix);
     
         } catch (err) {
-            res.status(400).json({ error: err.message });
+            res.status(500).json({ error: err.message });
         }
     };
     
@@ -64,6 +64,6 @@ exports.deletePrix=async(req,res)=>{
                 res.json({message:"prix supprimé"});
 
         }catch(err){
-                res.status(400).json({error:err.message});
+                res.status(500).json({error:err.message});
         }
 }

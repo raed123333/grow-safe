@@ -13,6 +13,7 @@ const donneeRoutes = require("./routes/donneeRoutes");
 const bodyParser = require("body-parser");
 const path = require("path");
 const prixRoutes=require("./routes/prixRoutes");
+const exerciceRoutes=require("./routes/exerciceRoutes");
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.use("/messengers", messengerRoutes);
 app.use("/notifications", notificationRoutes);
 app.use("/donnees", donneeRoutes);
 app.use("/prix",prixRoutes);
+app.use("exercice",exerciceRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Node.js + Express + MySQL API!");
